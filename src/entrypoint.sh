@@ -3,6 +3,10 @@
 # Exit immediately on error
 set -e
 
+#set timezone for working with crontab
+CUSTOM_TZ="${TZ:-America/New_York}"
+ln -snf /usr/share/zoneinfo/$CUSTOM_TZ /etc/localtime && echo $CUSTOM_TZ > /etc/timezone
+
 # Write cronjob env to file, fill in sensible defaults, and read them back in
 cat <<EOF > env.sh
 BACKUP_IDENT="${BACKUP_IDENT:-true}"
